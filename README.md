@@ -16,3 +16,13 @@ For gpu nodes:
 ```
 module load GROMACS/2025.3-CUDA-12.9.1
 ```
+
+## Visualization in PyMol
+1. Load the PDB file
+```
+load structure_name.pdb
+```
+2. Load the trajectory file onto the PDB structure
+```
+load traj_file.xtc, structure_name
+```
