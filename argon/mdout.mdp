@@ -1,17 +1,17 @@
 ;
 ;	File 'mdout.mdp' was generated
 ;	By user: suaa (29021)
-;	On host: genoa-login.clusterurz
-;	At date: Wed Oct 21 09:34:02 2026
+;	On host: genoa-hopper-mli-01.clusterurz
+;	At date: Tue Oct 27 14:06:00 2026
 ;
 ;	Created by:
 ;	             :-) GROMACS - gmx grompp, 2025.2-EasyBuild_5.2.0 (-:
 ;	
 ;	Executable:   /hits/sw/shared/2025b/x86_64/amd/zen4/software/GROMACS/2025.2-foss-2025b/bin/gmx
 ;	Data prefix:  /hits/sw/shared/2025b/x86_64/amd/zen4/software/GROMACS/2025.2-foss-2025b
-;	Working dir:  /home/suaa/gmx
+;	Working dir:  /home/suaa/gmx/argon
 ;	Command line:
-;	  gmx grompp -f anneal.mdp -c argon_start.pdb -p argon.top -maxwarn 1
+;	  gmx grompp -f anneal2.mdp -c liquid.gro -p argon.top -maxwarn 1
 
 ; VARIOUS PREPROCESSING OPTIONS
 ; Preprocessor information: use cpp syntax.
@@ -35,7 +35,7 @@ mts                      = no
 ; factor by which to increase the mass of the lightest atoms
 mass-repartition-factor  = 1
 ; mode for center of mass motion removal
-comm-mode                = Angular
+comm-mode                = Linear
 ; number of steps for center of mass motion removal
 nstcomm                  = 1
 ; group(s) for center of mass motion removal
@@ -63,13 +63,13 @@ rtpi                     = 0.05
 
 ; OUTPUT CONTROL OPTIONS
 ; Output frequency for coords (x), velocities (v) and forces (f)
-nstxout                  = 5000
-nstvout                  = 5000
+nstxout                  = 10000
+nstvout                  = 10000
 nstfout                  = 0
 ; Output frequency for energies to log file and energy file
-nstlog                   = 500
+nstlog                   = 100
 nstcalcenergy            = 1
-nstenergy                = 500
+nstenergy                = 100
 ; Output frequency and precision for .xtc file
 nstxout-compressed       = 500
 compressed-x-precision   = 1000
@@ -147,13 +147,13 @@ tc-grps                  = System
 tau_t                    = 0.1
 ref_t                    = 100
 ; pressure coupling     
-Pcoupl                   = no
+Pcoupl                   = Berendsen
 Pcoupltype               = isotropic
 nstpcouple               = -1
 ; Time constant (ps), compressibility (1/bar) and reference P (bar)
 tau_p                    = 0.5
 compressibility          = 4.5e-5
-ref_p                    = 1.0
+ref_p                    = 10.0
 ; Scaling of reference coordinates, No, All or COM
 refcoord-scaling         = No
 
@@ -170,10 +170,10 @@ annealing_npoints        = 2
 ; List of times at the annealing points for each group
 annealing_time           = 0 1000
 ; Temp. at each annealing point, for each group.
-annealing_temp           = 100 25
+annealing_temp           = 100 0
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
-gen_vel                  = yes
+gen_vel                  = no
 gen_temp                 = 100.0
 gen_seed                 = 173529
 
